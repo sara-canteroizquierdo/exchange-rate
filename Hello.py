@@ -1,17 +1,23 @@
-# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022)
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+import requests
 
+# Define the base URL and your access key
+base_url = "http://api.exchangeratesapi.io/v1/latest"
+access_key = "8d33b72224d5396cbf4aa532d86051a8"  # Replace with your actual access key
+
+# Construct the full URL
+url = f"{base_url}?access_key={access_key}"
+
+# Send a GET request to the API
+response = requests.get(url)
+
+# Check the HTTP status code
+if response.status_code == 200:
+    # Request was successful, print the JSON response
+    data = response.json()
+    print(data)
+else:
+    # Request failed, print an error message
+    print(f"Request failed with status code: {response.status_code}")
 import streamlit as st
 from streamlit.logger import get_logger
 
